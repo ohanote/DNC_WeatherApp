@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DNC Weather</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    
+  </head>
+  <body>
+    <header>
+      <div class="max-content">
+        <img src="./assets/logoDNC.svg" alt="logo" width="150" />
+        <nav>
+          <ul>
+            <li>Endereços</li>
+            <li>Previsão do Tempo</li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero-section">
+      <div class="max-content">
+        <h1>
+          Descubra Mais com Precisão: Previsões do Tempo e endereços em tempo
+          real.
+        </h1>
+        <img src="./assets/clouds.svg" alt="clouds" width="200px" />
+      </div>
+    </section>
+
+    <section>
+      <form action="javascript:getCep()">
+        <label for="name">Primeiro Nome</label>
+        <input
+          type="text"
+          name="name"
+          id="nameInput"
+          placeholder="Insira seu primeiro nome"
+        />
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          name="email"
+          id="emailInput"
+          placeholder="Insira seu email"
+        />
+        <label for="cep">CEP</label>
+        <input
+          type="text"
+          name="cep"
+          id="cepInput"
+          placeholder="Insira seu CEP"
+        />
+        <fieldset>
+          <legend>Digite a latitude e longitude para saber a previsão:</legend>
+          <input
+            type="text"
+            name="lat"
+            id="latInput"
+            placeholder="latitude"
+          />
+          <input
+            type="text"
+            name="long"
+            id="LongInput"
+            placeholder="longitude"
+          />
+        </fieldset>
+        <button type="submit">Acessar</button>
+      </form>
+    </section>
+
+    <section>
+      <div class="max-content">
+        <div class="legend">
+          <h1>Resultado da busca por CEP:</h1>
+          <img src="./assets/cepIcon.svg" alt="cep-icon" width="50px" />
+        </div>
+        <div class="table">
+          <div class="table-header">
+            <div><span>Logradouro/</span> <span>nome</span></div>
+            <div><span>Bairro/</span> <span>Distrito</span></div>
+            <div><span>Localidade/</span> <span>UF</span></div>
+          </div>
+          <div class="table-content">
+            <span id="street">---</span>
+            <span id="district">---</span>
+            <span id="state">---</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="max-content">
+        <div class="legend">
+          <h1>Previsão do tempo na região:</h1>
+          <img src="./assets/weatherIcon.svg" alt="weather-icon" width="50px" />
+        </div>
+
+        <div class="weather-info">
+          <span>Previsão de tempo de acordo com a região:<span>---</span></span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span><a href="#">Termos de uso</a></span>
+      <span>|</span>
+      <span><a href="#">Politica de Privacidade</a></span>
+    </footer>
+
+    <script src="./app.js" type="text/javascript"></script>
+  </body>
+</html>
