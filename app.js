@@ -1,5 +1,6 @@
 const form = document.getElementById("form");
 const errorText = document.getElementById("errorCatch");
+const formErrorText = document.getElementById("formErrorCatch");
 
 const street = document.getElementById("street");
 const district = document.getElementById("district");
@@ -23,6 +24,11 @@ const getCEPData = (cep) => {
 
 const getLatLong = () => {
   const _cep = document.querySelector("#cepInput").value;
+  if (!_cep){
+    errorText.innerHTML =
+        "Preencha o seu CEP";
+    return
+  }
   const _latitude = document.getElementById("latInput");
   const _longitude = document.getElementById("longInput");
   console.log(_cep);
@@ -92,6 +98,15 @@ form.addEventListener("submit", (e) => {
   const formName = document.querySelector("#nameInput").value;
   const email = document.querySelector("#emailInput").value;
   const cep = document.querySelector("#cepInput").value;
+
+  if (!_lat || !_long){
+    formErrorText.innerHTML = "Preencha corretamente sua Latitudade e Longitude"
+  }
+
+  if (!cep){
+    formErrorText.innerHTML = "Preencha seu cep"
+  }
+
 
   getCEPData(cep);
 
