@@ -127,6 +127,15 @@ a{
   text-decoration: none;
 }
 
+.search-input{
+  display: flex;
+  align-items: center;
+}
+
+.search-input svg{
+  margin-left: -30px;
+  cursor: pointer;
+}
 
 .legend{
   display: flex;
@@ -199,6 +208,10 @@ a{
 #errorCatch {
   font-size: smaller;
   color: red;
+}
+
+#degrees{
+  font-weight: 800;
 }
 
 @media screen and (max-width: 700px) {

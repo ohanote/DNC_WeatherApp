@@ -6,7 +6,6 @@
     <title>DNC Weather</title>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
-    
   </head>
   <body>
     <header>
@@ -48,21 +47,29 @@
           placeholder="Insira seu email"
         />
         <label for="cep">CEP</label>
-        <input
-          type="text"
-          name="cep"
-          id="cepInput"
-          placeholder="00000-000"
-        />
+        <div class="search-input">
+          <input type="text" name="cep" id="cepInput" placeholder="00000-000" />
+          <svg
+            width="25px"
+            height="25px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onclick="getLatLong()"
+          >
+            <path
+              d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+              stroke="#000000"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
         <span id="errorCatch"></span>
         <fieldset>
           <legend>Digite a latitude e longitude para saber a previsão:</legend>
-          <input
-            type="text"
-            name="lat"
-            id="latInput"
-            placeholder="latitude"
-          />
+          <input type="text" name="lat" id="latInput" placeholder="latitude" />
           <input
             type="text"
             name="long"
@@ -103,7 +110,7 @@
         </div>
 
         <div class="weather-info">
-          <span>Previsão de tempo de acordo com a região:<span>---</span></span>
+          <span>Previsão de tempo de acordo com a região:<span id="degrees">---</span></span>
         </div>
       </div>
     </section>

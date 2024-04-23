@@ -5,9 +5,6 @@ const street = document.getElementById("street");
 const district = document.getElementById("district");
 const state = document.getElementById("state");
 
-const latitude = document.getElementById("latInput");
-const longitude = document.getElementById("longInput");
-
 const formatCEP = (zipCode) => {
   return zipCode.replace(/-/g, "");
 };
@@ -24,51 +21,79 @@ const getCEPData = (cep) => {
     });
 };
 
-const getLatLong = (cep) => {
-  fetch(`http://api.zippopotam.us/BR/${cep}`)
+const getLatLong = () => {
+  const _cep = document.querySelector("#cepInput").value;
+  const _latitude = document.getElementById("latInput");
+  const _longitude = document.getElementById("longInput");
+  console.log(_cep);
+
+  fetch(`http://api.zippopotam.us/BR/${_cep}`)
     .then((response) => response.json())
     .then((data) => {
       const latLongData = data;
 
-      latitude.value = latLongData.places[0].latitude;
-      longitude.value = latLongData.places[0].longitude;
+      _latitude.value = latLongData.places[0].latitude;
+      _longitude.value = latLongData.places[0].longitude;
     })
     .catch((error) => {
       errorText.innerHTML =
         "CEP não localizado. Insira sua latitude e longitude";
+      console.log(error);
     });
 };
 
 const getWeatherData = (lat, long) => {
-  fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`
-  )
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-};
+  const double = (n) => {
+    return n < 10 ? "0" + n : n;
+  };
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+  const date = new Date();
+  const checkDate = `${date.getUTCFullYear()}-${double(
+    date.getUTCMonth()
+  )}-${double(date.getUTCDate())}T${double(date.getUTCHours())}:${double(
+    date.getUTCMinutes()
+  )}`;
 
-  const formName = document.querySelector("#nameInput").value;
-  const email = document.querySelector("#emailInput").value;
-  const cep = document.querySelector("#cepInput").value;
-  let _latitude = latitude;
-  let _longitude = longitude;
+  const latitude = document.getElementById("latInput");
+  const longitude = document.getElementById("longInput");
+  const degrees = document.getElementById("degrees");
 
-  const data = [formName, email, cep, latitude, longitude];
-  console.log(data);
-
-  getCEPData(cep);
-
-  if (!_latitude.value || !_longitude.value) {
+  if (!latitude.value || !longitude.value) {
     getLatLong(cep);
   }
-  
+
   _latitude = latitude.value;
   _longitude = longitude.value;
 
   console.log(_latitude, _longitude);
 
-  getWeatherData(_latitude, _longitude);
+  fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      for (let i = 0; i <= data.hourly.time.length; i++) {
+        if (data.hourly.time[i] > checkDate){
+          degrees.innerHTML = ` ${data.hourly.temperature_2m[i]} ºC`
+        }
+        
+      }
+    });
+};
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  console.log(new Date().getDate());
+
+  const _lat = document.getElementById("latInput");
+  const _long = document.getElementById("longInput");
+
+  const formName = document.querySelector("#nameInput").value;
+  const email = document.querySelector("#emailInput").value;
+  const cep = document.querySelector("#cepInput").value;
+
+  getCEPData(cep);
+
+  getWeatherData(_lat.value, _long.value);
 });
