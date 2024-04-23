@@ -27,7 +27,7 @@ const getLatLong = () => {
   const _longitude = document.getElementById("longInput");
   console.log(_cep);
 
-  fetch(`http://api.zippopotam.us/BR/${_cep}`)
+  fetch(`https://api.zippopotam.us/BR/${_cep}`)
     .then((response) => response.json())
     .then((data) => {
       const latLongData = data;
