@@ -32,7 +32,7 @@
     </section>
 
     <section>
-      <form action="javascript:getCep()">
+      <form action="" id="form">
         <label for="name">Primeiro Nome</label>
         <input
           type="text"
@@ -52,8 +52,9 @@
           type="text"
           name="cep"
           id="cepInput"
-          placeholder="Insira seu CEP"
+          placeholder="00000-000"
         />
+        <span id="errorCatch"></span>
         <fieldset>
           <legend>Digite a latitude e longitude para saber a previsão:</legend>
           <input
@@ -65,7 +66,7 @@
           <input
             type="text"
             name="long"
-            id="LongInput"
+            id="longInput"
             placeholder="longitude"
           />
         </fieldset>

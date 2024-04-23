@@ -104,6 +104,7 @@ button{
   font-weight: 600;
   color: white;
   font-size: large;
+  cursor: pointer;
 }
 
 footer{
@@ -193,6 +194,11 @@ a{
 .max-content{
   width: 80%;
   max-width: 900px;
+}
+
+#errorCatch {
+  font-size: smaller;
+  color: red;
 }
 
 @media screen and (max-width: 700px) {
